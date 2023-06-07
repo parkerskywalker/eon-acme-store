@@ -1,0 +1,44 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+    <h2>Products </h2>
+    {% if object_list %}
+        <table class="table table-striped">            
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for field in object_list %}
+                    <tr>            
+                        <td>{{ field.id }}</td>        
+                        <td>{{ field.name }}</td>
+                        <td>{{ field.description }}</td>
+                        <td>${{ field.price }}</td>                    
+                        <td>{{ field.category }}</td>
+                        <td>{{ field.stock }}</td>
+                        <td>
+                            <a href="{% url 'webmin:product_detail' field.id %}" class="btn btn-info">Detail</a>                        
+                            <a href="{% url 'webmin:product_update' field.id %}" class="btn btn-success">Update</a>
+                            <a href="{% url 'webmin:product_delete' field.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>    
+
+        <br><br>    
+    {% else %}
+        No data
+    {% endif %}    
+    <a href="{% url 'webmin:product_create' %}" class="btn btn-info">Create product</a>
+
+{% endblock %}

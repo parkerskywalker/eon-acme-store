@@ -1,0 +1,54 @@
+{% extends 'templates/base.html' %}
+
+{% block style %}
+    <style>
+        .sold-out {
+            font-style: italic;
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <h2>Hello {{ request.user.get_full_name }} Welcome to WebStore Acme-EON</h2> 
+            {% include 'templates/webstore/balance.html' %}
+        </div>
+        {% if object_list %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>ShoppingCart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in object_list %}
+                        <tr>
+                            <td>{{ field.id }}</td>
+                            <td>{{ field.name }}</td>
+                            <td>{{ field.description }}</td>
+                            <td>${{ field.price }}</td>
+                            <td>{{ field.stock }}</td>
+                            <td>
+                                {% if field.available %}
+                                    <a href="{% url 'webstore:shoppingcart' field.id request.user.id %}">Add / Sell </a>
+                                {% else %}
+                                    <label class="sold-out">Sold Out</label>
+                                {% endif %}                            
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            No items available
+        {% endif %}
+    </div>
+{% endblock %}

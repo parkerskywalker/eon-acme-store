@@ -1,0 +1,12 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+  <h2>Confirm Delete product {{ product.name }}</h2>
+  <p>Are you sure you want to delete {{ product.name }}?</p>
+  <form method="post">
+    {% csrf_token %}
+
+    <a href="{% url 'webmin:product_list' %}" class="btn btn-danger">Back</a>
+    <button type="submit" class="btn btn-success">Delete</button>    
+  </form>
+{% endblock %}

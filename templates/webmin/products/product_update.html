@@ -1,0 +1,36 @@
+{% extends 'templates/base.html' %}
+{% block script %}
+  <script>
+    $(document).ready(function(){      
+        $("#clickProduct").click(function(evt){          
+            
+            var validate_price = $("#id_price").val();      
+            var validate_stock = $("#id_stock").val();
+
+            if (validate_price > 0 && validate_stock > 0){
+                
+              $(formProduct).submit();
+
+            } else {
+              alert("Amount or Stock cannot be less than 0");
+              $("#id_price").val(0);
+              $("#id_stock").val(0);
+            }
+            
+            evt.preventDefault();
+        });
+    });
+    
+  </script>
+{% endblock %}
+
+
+{% block content %}
+  <h2>Update Product {{ product.name }}</h2>
+  <form method="post" id="formProduct">
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <a href="{% url 'webmin:product_list' %}" class="btn btn-danger">Back</a>
+    <button class="btn btn-success" id="clickProduct">Update</button>
+  </form>
+{% endblock %}

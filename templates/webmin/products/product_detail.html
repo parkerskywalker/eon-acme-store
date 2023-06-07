@@ -1,0 +1,26 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+
+    <h2>Product detail</h2>
+
+    <div class="card" style="width: 18rem;">        
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <hr>
+            <label class="card-text">id: {{ product.id }} </label>
+            <label class="card-text">created: {{ product.create_date }} </label>
+            <label class="card-text">modified: {{ product.modified_date }} </label>
+            <label class="card-text">name: {{ product.name }} </label>
+            <label class="card-text">description: {{ product.description }} </label>
+            <label class="card-text">price: ${{ product.price }} </label>
+            <label class="card-text">stock: {{ product.stock }} </label>
+            <label class="card-text">category: {{ product.category }} </label>
+            
+            <hr>
+            <a href="{% url 'webmin:product_list' %}" class="btn btn-success">Back</a>
+        </div>
+    </div>
+        
+{% endblock %}

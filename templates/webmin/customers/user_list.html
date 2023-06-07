@@ -1,0 +1,34 @@
+{% if object_list %}
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for field in object_list %}
+                <tr>
+                    <td>{{ field.id }}</td>
+                    <td>{{ field.first_name|default:"NA" }}</td>
+                    <td>{{ field.last_name|default:"NA" }}</td>
+                    <td>{{ field.email|default:"NA" }}</td>
+                    <td>{{ field.phone|default:"NA" }}</td>
+                    <td>
+                        <a href="">Detail</a>
+                        <a href="">Update</a>
+                        <a href="">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+    <br><br><br>
+    <a href="{% url 'webmin:user_create' %}">Create New User</a>
+{% else %}
+    No data
+{% endif %}
