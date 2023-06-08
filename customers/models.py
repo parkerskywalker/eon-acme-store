@@ -1,11 +1,8 @@
-from django.contrib.auth.models import User
 from django.db import models
-
-#from balances.models import Operation
+from django.contrib.auth.models import User
 
 # Create your models here.
 BALANCE_INITIAL = 1000
-
 
 class Customer(models.Model):
     customer = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,7 +1,7 @@
 from django.db import models
 
 from customers.models import Customer
-from acme_store.abstracts import BaseModel, BaseModelBalance
+from acme_store.abstracts import BaseModelBalance
 from catalogs.models import OperationType
 from products.models import Product
 
@@ -21,10 +21,7 @@ class Operation(BaseModelBalance):
         verbose_name = 'Operation register'
         verbose_name_plural = 'Operations register'
 
-    def save(self, *args, **kwargs):
-        product = self.product
-        quantity = self.quantity        
-        
+    def save(self, *args, **kwargs):        
         self.update_stock(self.product, self.quantity, self.operation_type)
         
         super().save(*args, **kwargs)   
@@ -37,8 +34,8 @@ class Operation(BaseModelBalance):
         elif 'purchase' in operation_type.name.lower():
             result = product.retrieve_stock - quantity
         
-        update_product = Product.objects.filter(id=product.id).update(stock=result)
+        Product.objects.filter(id=product.id).update(stock=result)
         
-        return     
+        return True    
         
         

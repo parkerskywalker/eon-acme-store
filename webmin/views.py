@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -44,25 +43,3 @@ class ProductDelete(DeleteView, LoginRequiredMixin):
     template_name = 'templates/webmin/products/product_delete.html'
     context_object_name = 'product'
     success_url = reverse_lazy('webmin:product_list')
-
-
-""" SECTION USERS 
-class UserList(ListView):
-    model = User
-    template_name = 'templates/webmin/users/user_list.html'    
-    context_object_name = 'users'
-    
-class UserCreate(CreateView):
-    model = User
-    fields = ['first_name', 'last_name', 'email', 'password']
-    template_name = 'templates/webmin/users/user_create.html'    
-    context_object_name = 'users'
-    success_url = reverse_lazy('webmin:user_list')
-    
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({
-            'title':'Create new User'
-        })
-        return context
-"""            

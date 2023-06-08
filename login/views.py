@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout as do_logout
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
@@ -18,19 +18,15 @@ class Login(LoginView):
             if user is not None:
                 login(request, user)
                 if user.is_superuser or user.is_staff:
-                    return redirect("webmin:product_list")
-                else:
-                    return redirect('webstore:index')
-
-            if user is None:
-                #Aqui buscamos a los empleados, prospectos
-                pass
-
-            return HttpResponseRedirect("/")
+                    return redirect("webmin:product_list")                
+                return redirect('webstore:index')
+            
+            
 
         except Exception as e:
-            print(e)
-            return HttpResponseRedirect("/")
+            pass
+    
+        return redirect("login:login")
 
 
 def logout(request, *args, **kwargs):

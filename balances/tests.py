@@ -13,6 +13,5 @@ class OperationTestModel(TestCase):
         customer = Customer.objects.get(customer_id=1)              
         product = Product.objects.get(id=1)
         type = OperationType.objects.get(id=1)
-        new_operation = Operation.objects.create(operation=initial_count+1, customer=customer, product=product, quantity=3, price=20, operation_type=type) 
-
         
+        Operation.objects.create(operation=initial_count+1, customer=customer, product=product, quantity=3, price=20, operation_type=type)

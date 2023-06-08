@@ -12,7 +12,7 @@ class Command(BaseCommand):
             {'username': 'superadmin', 'password': 'acme12345', 'email':'parker_1978@hotmail.com', 'is_superuser':True, 'first_name':'Jose', 'last_name':'Carranza'},
             {'username': 'customer1', 'password': 'contrasena1', 'email':'customer@one.com', 'is_superuser':False, 'first_name':'customer', 'last_name':'one'},
             {'username': 'customer2', 'password': 'contrasena2', 'email':'customer@two.com', 'is_superuser':False, 'first_name':'customer', 'last_name':'two'},
-            {'username': 'customer3', 'password': 'contrasena3', 'email':'customer@three.com', 'is_superuser':False, 'first_name':'customer', 'last_name':'three'}
+            {'username': 'customer3', 'password': 'contrasena3', 'email':'customer@three.com', 'is_superuser':False, 'first_name':'customer', 'last_name':'three'},
             {'username': 'customer4', 'password': 'contrasena4', 'email':'customer@three.com', 'is_superuser':False, 'first_name':'customer', 'last_name':'four'},
         ]
                 
