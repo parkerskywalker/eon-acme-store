@@ -19,12 +19,18 @@ class Product(BaseModel):
         verbose_name = "Product"
         verbose_name_plural = "Products"
         
+    """ 
+    available regresa un booleano para indicar si el producto esta en stock para poder mostrarlo al usuario y que pueda comprarlo
+    """
     @property
     def available(self):
         if self.stock > 0:
             return True
         return False   
     
+    """ 
+    retrieve_stock regresa el número de articulos disponibles que tiene un producto
+    """
     @property
     def retrieve_stock(self):
         return self.stock

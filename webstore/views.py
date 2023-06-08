@@ -34,6 +34,9 @@ class ShoppingCart(LoginRequiredMixin, FormView):
             return 1
         return id + 1
     
+    """
+    get_initial Inicializa el formulario con datos que no se van a mostrar al customer: operation y customer no se muestran en el formulario 
+    """    
     def get_initial(self):
         product = self.get_product()
         initial = super().get_initial()
@@ -44,6 +47,9 @@ class ShoppingCart(LoginRequiredMixin, FormView):
         initial['price']=product.price
         return initial
 
+    """
+    validate_available_stock valida que el producto este en stock o hayan productos disponibles
+    """
     def validate_available_stock(self, product, quantity):
         if product.retrieve_stock >= quantity:
             return True

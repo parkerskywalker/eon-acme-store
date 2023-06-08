@@ -11,7 +11,10 @@ class Customer(models.Model):
     class Meta:
         verbose_name = 'Customer'
         verbose_name_plural = 'Customers'
-                    
+
+    """
+    get_sales obtiene la sumatoria de todas las ventas que se han hecho    
+    """
     @property
     def get_sales(self):            
         price = 0
@@ -19,7 +22,9 @@ class Customer(models.Model):
             price += sale.price
             
         return price
-    
+    """
+    get_purchases obtiene la sumatoria de todas las compras que se han hecho.
+    """
     @property
     def get_purchases(self):        
         price = 0
@@ -27,7 +32,9 @@ class Customer(models.Model):
             price += purchase.price
         return price
     
+    """ 
+    get_account_statement obtiene el gran total del balance inicial + las ventas - las compras
+    """
     @property
     def get_account_statement(self):        
         return (self.balance + self.get_sales) - self.get_purchases
-        

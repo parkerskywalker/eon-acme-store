@@ -68,10 +68,9 @@ Existen 5 modelos principales
 - URL :  `webstore/shoppingcart/<product_id>/user/<user_id>/`
     * Url del shoppingcart. Permite comprar/vender articulos
     
-- URL: `/registro`
-- Parámetros:
-  - Nombre de usuario: Nombre de usuario del nuevo usuario.
-  - Correo electrónico: Correo electrónico del nuevo usuario.
-  - Contraseña: Contraseña del nuevo usuario.
-- Valor de retorno: Si la información es válida, crea un nuevo usuario y redirige a la página de inicio. En caso contrario, muestra un mensaje de error.
 
+
+
+### PEP8 ###
+- Se utilizo 'prospector' para auditar el código.
+    para correrlo se tiene que activar el entorno virtual y en la ruta en donde se encuentra 'manage.py' se tiene que someter a 'prospector'

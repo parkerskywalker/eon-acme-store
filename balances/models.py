@@ -28,11 +28,13 @@ class Operation(BaseModelBalance):
         
     
     def update_stock(self, product, quantity, operation_type):
-    
+        """
+        Actualiza el stock del producto cuando se agrega una nueva 'operacion'
+        """
         if 'sale' in operation_type.name.lower():
-            result = product.retrieve_stock + quantity    
+            result = product.retrieve_stock - quantity    
         elif 'purchase' in operation_type.name.lower():
-            result = product.retrieve_stock - quantity
+            result = product.retrieve_stock + quantity
         
         Product.objects.filter(id=product.id).update(stock=result)
         
