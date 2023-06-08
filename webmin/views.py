@@ -1,4 +1,4 @@
-#from typing import Any, Dict
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -9,12 +9,12 @@ from products.models import Product
 
 
 """ SECTION PRODUCT """
-class ProductDetail(DetailView):
+class ProductDetail(DetailView, LoginRequiredMixin):
     model = Product
     template_name = 'templates/webmin/products/product_detail.html'
     context_object_name = 'product'
 
-class ProductCreate(CreateView):
+class ProductCreate(CreateView, LoginRequiredMixin):
     model = Product
     fields = ['name', 'description', 'price', 'category', 'stock']
     template_name = 'templates/webmin/products/product_create.html'    
@@ -27,19 +27,19 @@ class ProductCreate(CreateView):
         })
         return context
 
-class ProductList(ListView):
+class ProductList(ListView, LoginRequiredMixin):
     model = Product
     template_name = 'templates/webmin/products/product_list.html'
     context_object_name = 'products'
         
-class ProductUpdate(UpdateView):
+class ProductUpdate(UpdateView, LoginRequiredMixin):
     model = Product
     fields = ['name', 'description', 'price', 'category', 'stock']
     template_name = 'templates/webmin/products/product_update.html'
     context_object_name = 'product'
     success_url = reverse_lazy('webmin:product_list')
 
-class ProductDelete(DeleteView):
+class ProductDelete(DeleteView, LoginRequiredMixin):
     model = Product
     template_name = 'templates/webmin/products/product_delete.html'
     context_object_name = 'product'
