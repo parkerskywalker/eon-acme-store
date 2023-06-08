@@ -1,21 +1,49 @@
 {% extends 'templates/base.html' %}
 
+{% block script%}
+    <script>
+        $(document).ready(function(){
+            $("#addToCar").click(function(evt){
+                var validate_quantity = $("#id_quantity").val();
+                var validate_price = $("#id_price").val();
+
+                if (validate_quantity > 0 && validate_price > 0){
+                    $(formShoppingCart).submit()
+                } else {
+                    alert("Amount or Quantity cannot be less than 0");                    
+                }
+
+                evt.preventDefault();
+            
+            })
+        });
+    </script>
+{% endblock %}
+
 {% block content %}    
     <div class="container">
-        <h2>Shopping {{ request.user.get_full_name }}</h2>         
-        {% include 'templates/webstore/balance.html' %}        
-        <label >
-            Sale / Purchase: <strong>Product: {{ product.name }}</strong>
-        </label>
-        <hr>
-        <div class="row">
-            <div class="col-lg-12">
-                <form method="POST">
-                    {{ form.as_p }}
-                    {% csrf_token %}
-                    <input type="submit" value="Accept" class="btn btn-success">
-                </form>
+        <div class="col-lg-12 text-center">
+            <h4>Shopping {{ request.user.get_full_name }}</h4>
+            <hr>      
+            {% include 'templates/webstore/balance.html' %}        
+        </div>        
+        <div class="col-lg-12 text-center">
+            
+            <h3>Sale / Purchase: <strong>{{ product.name }}</strong></h3>
+            <h4>Stock available: {{ product.stock }}</h4>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="formShoppingCart" method="POST">
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <input id="addToCar" type="submit" value="Add To Car" class="btn btn-success">
+                    </form>
+                    <a href="{% url 'webstore:index' %}" class="btn btn-danger">Cancel</a>
+                </div>                
+                
             </div>
-        </div>
+            
+        </div>                                    
     </div>
 {% endblock %}

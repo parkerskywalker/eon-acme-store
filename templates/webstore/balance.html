@@ -1,3 +1,21 @@
-<h4>Balance Initial: ${{ request.user.customer.balance }}</h4> 
-<h4>Balance Sales: ${{ request.user.customer.get_sales }}</h4>
-<h4>Balance Purchases ${{ request.user.customer.get_purchases }}</h4>
+<table class="table" border="1">
+    <tr>
+        <th colspan="2"><h3>My Account Statement</h3></th>
+    </tr>
+    <tr>
+        <td>Balance Initial</td>
+        <td style="text-align: center;">${{ request.user.customer.balance }}</td>
+    </tr>
+    <tr>
+        <td>Sales</td>
+        <td style="text-align: center;">+ ${{ request.user.customer.get_sales }}</td>
+    </tr>
+    <tr>
+        <td>Purchases</td>
+        <td style="text-align: center;">- ${{ request.user.customer.get_purchases }}</td>
+    </tr>
+    <tr>
+        <th>Gran Total: </th>
+        <th style="text-align: center;">${{request.user.customer.get_account_statement }}</th>            
+    </tr>                    
+</table>

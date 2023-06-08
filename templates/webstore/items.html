@@ -12,9 +12,19 @@
 {% block content %}
     <div class="container">
         <div class="col-lg-12 text-center">
-            <h2>Hello {{ request.user.get_full_name }} Welcome to WebStore Acme-EON</h2> 
+            <h2>Hello {{ request.user.get_full_name }} Welcome to WebStore Acme-EON</h2>             
+        </div>
+        <hr>
+        <div class="text-center">
             {% include 'templates/webstore/balance.html' %}
         </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3>Store</h3>
+            </div>
+        </div>        
         {% if object_list %}
             <table class="table table-striped">
                 <thead>

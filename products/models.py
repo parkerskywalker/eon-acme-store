@@ -23,5 +23,9 @@ class Product(BaseModel):
     def available(self):
         if self.stock > 0:
             return True
-        return False    
+        return False   
+    
+    @property
+    def retrieve_stock(self):
+        return self.stock
     

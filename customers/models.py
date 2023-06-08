@@ -14,19 +14,23 @@ class Customer(models.Model):
     class Meta:
         verbose_name = 'Customer'
         verbose_name_plural = 'Customers'
-    
+                    
     @property
-    def get_sales(self):
+    def get_sales(self):            
         price = 0
-        for sale in self.operation_set.filter(operation_type=1):
+        for sale in self.operation_set.filter(operation_type=2):        
             price += sale.price
             
         return price
     
     @property
-    def get_purchases(self):
+    def get_purchases(self):        
         price = 0
-        for purchase in self.operation_set.filter(operation_type=2):
-            proce += purchase.price
+        for purchase in self.operation_set.filter(operation_type=1):
+            price += purchase.price
         return price
+    
+    @property
+    def get_account_statement(self):        
+        return (self.balance + self.get_sales) - self.get_purchases
         
